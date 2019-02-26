@@ -34,7 +34,7 @@ export default class ApplicationViews extends Component {
         if (this.state.initialized) {
             return (
                 <React.Fragment>
-                    <Route exact path="/home" render={props => { return <Home />}} />
+                    <Route exact path="/" render={props => { return <Home />}} />
                     <Route exact path="/ecommerce" render={props => { return <Ecommerce />}} />
                     <Route path="/ecommerce/customers" render={(props) => { return <CustomersList {...props} customers={this.state.customers}/>}} />
                 </React.Fragment>
