@@ -86,8 +86,8 @@ export default class ApplicationViews extends Component {
                     <Route exact path="/ecommerce/customers/new" render={(props) => { return <CustomersForm {...props} addCustomer={this.addCustomer} /> }} />
                     <Route path="/ecommerce/customers/edit/:customersId(\d+)" render={(props) => { return <CustomersEdit {...props} customers={this.state.customers} editCustomer={this.editCustomer} /> }} />
                     <Route exact path="/ecommerce/orders" render={(props) => { return <OrdersList {...props} orders={this.state.orders} /> }} />
-                    <Route exact path="/ecommerce/orders/new" render={(props) => { return <OrdersForm {...props} addOrder={this.addOrder} /> }} />
-                    <Route path="/ecommerce/orders/edit/:ordersId(\d+)" render={(props) => { return <OrdersEdit {...props} orders={this.state.orders} editOrder={this.editOrder} /> }} />
+                    <Route exact path="/ecommerce/orders/new" render={(props) => { return <OrdersForm {...props} addOrder={this.addOrder} customers={this.state.customers} paymentTypes={this.state.paymentTypes} products={this.state.products} /> }} />
+                    <Route path="/ecommerce/orders/edit/:ordersId(\d+)" render={(props) => { return <OrdersEdit {...props} orders={this.state.orders} editOrder={this.editOrder} customers={this.state.customers} paymentTypes={this.state.paymentTypes} products={this.state.products} /> }} />
                 </React.Fragment>
             );
         } else {
