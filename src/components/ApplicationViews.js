@@ -16,7 +16,9 @@ export default class ApplicationViews extends Component {
     state = {
         customers: [],
         orders: [],
-        initialize: false
+        initialize: false,
+        paymentTypes: [],
+        products: [],
     }
 
     componentDidMount() {

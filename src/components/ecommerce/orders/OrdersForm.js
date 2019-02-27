@@ -27,71 +27,62 @@ export default class OrdersForm extends Component {
       this.props.addOrder(orders).then(() => this.props.history.push("/ecommerce/orders"))
   }
 
-
-  // <select
-  // defaultValue=""
-  // name="customer"
-  // id="customerId"
-  // onChange={this.props.handleFieldChange}
-  // >
-  // <option value="{customer.first_name} {customer.last_name}">Select a Customer</option>
-  // {this.state.customer.map(customer => (
-  //   <option key={this.props.customer.id} id={this.props.customer.id}>
-  //     {customer.first_name} {customer.last_name}
-  //   </option>
-  // ))}
-  // </select>
-
   render() {
     return (
       <React.Fragment>
         <Form className="OrdersForm">
+
           <Form.Field className="form-group">
-            <label htmlFor="customer">Customer</label>
+            <label htmlFor="username">Customer's Username</label>
             <select
               defaultValue=""
               name="customer"
-              id="customerId"
-              onChange={this.props.handleFieldChange}
+              id="customer"
+              onChange={this.handleFieldChange}
               >
-              <option value="{customer.first_name} {customer.last_name}">Select a Customer</option>
-              {this.state.customer.map(customer => (
-                <option key={this.props.customer.id} id={this.props.customer.id}>
-                  {customer.first_name} {customer.last_name}
+              <option value="">Select a Customer</option>
+              {this.props.customers.map(customer => (
+                <option key={customer.id} id={customer.id} value={customer.url}>
+                  {customer.username}
                 </option>
               ))}
             </select>
           </Form.Field>
-          <Form.Field>
+
+          <Form.Field className="form-group">
+            <label htmlFor="payment_type">Payment Type</label>
             <select
               defaultValue=""
               name="payment_type"
-              id="payment_typeId"
-              onChange={this.props.handleFieldChange}
+              id="payment_type"
+              onChange={this.handleFieldChange}
               >
-              <option value="{payment_type.id}">Select a Payment Type</option>
-              {this.state.payment_type.map(payment_type => (
-                <option key={this.props.payment_type.id} id={this.props.payment_type.id}>
-                  {this.props.payment_type.id}
+              <option value="">Select a Payment Type</option>
+              {this.props.paymentTypes.map(payment => (
+                <option key={payment.id} id={payment.url}>
+                  {payment.account_number}
                 </option>
               ))}
             </select>
           </Form.Field>
+
           <Form.Field>
+              <label htmlFor="products">Products</label>
               <select
                 defaultValue=""
-                name="product"
-                id="productId"
+                name="products"
+                id="products"
                 onChange={this.props.handleFieldChange}
                 >
-                <option value="{customer.first_name} {customer.last_name}">Select a Customer</option>
-                {this.state.product.map(product => (
-                  <option key={this.props.product.id} id={this.props.product.id}>
+                <option value="">Select</option>
+                {this.props.products.map(product => (
+                  <option key={product.id} id={product.url}>
                     {product.name}
                   </option>
                 ))}
               </select>
           </Form.Field>
+
           <Button type="submit" onClick={this.constructNewOrder} className="btn btn-primary" color="green">Submit</Button>
           <Button as={Link} size="tiny" color="yellow" className="card-link" to={`/ecommerce/orders/`}>Back</Button>
         </Form>
