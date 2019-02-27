@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
-import { Route, Redirect } from "react-router-dom";
+import { Route } from "react-router-dom";
 
 import CustomersManager from "../managers/CustomersManager";
 import ProductTypesManager from "../managers/ProductTypesManager";
+import ProductsManager from "../managers/ProductsManager";
 
 import Home from "../components/home/Home";
 import Ecommerce from "../components/ecommerce/Ecommerce";
@@ -15,17 +16,21 @@ import ProductTypesList from "../components/ecommerce/productTypes/ProductTypesL
 import ProductTypesForm from "../components/ecommerce/productTypes/ProductTypesForm";
 import ProductTypesEdit from "../components/ecommerce/productTypes/ProductTypesEdit";
 
+import ProductsList from "../components/ecommerce/products/ProductsList"
+import ProductsForm from "../components/ecommerce/products/ProductsForm"
+import ProductsEdit from "../components/ecommerce/products/ProductsEdit"
+
 export default class ApplicationViews extends Component {
 
     state = {
         customers: [],
+        products: [],
         productTypes: [],
         initialize: false
     }
 
     componentDidMount() {
         let customersLoading = CustomersManager.getAll().then(allCustomers => {
-            console.log("all customers", allCustomers)
             this.setState({
                 customers: allCustomers
             });
@@ -37,9 +42,13 @@ export default class ApplicationViews extends Component {
             });
         });
 
+        let productsLoading = ProductsManager.getAll().then(allProducts => {
+            this.setState({
+                products: allProducts
+            });
+        });
 
-
-        Promise.all([customersLoading, productTypesLoading]).then(() => {
+        Promise.all([customersLoading, productTypesLoading, productsLoading]).then(() => {
             this.setState(
                 {
                     initialized: true
@@ -66,6 +75,22 @@ export default class ApplicationViews extends Component {
                 })
             );
 
+    addProduct = products =>
+        ProductsManager.addAndList(products)
+            .then(() => ProductsManager.getAll()).then(products =>
+                this.setState({
+                    products: products
+                })
+            );
+
+    editProduct = (products, url) =>
+        ProductsManager.putAndListProducts(products, url)
+            .then(() => ProductsManager.getAll()).then(products =>
+                this.setState({
+                    products: products
+                })
+            );
+
     // Product Types
     addProductType = productTypes =>
         ProductTypesManager.addAndList(productTypes)
@@ -89,6 +114,10 @@ export default class ApplicationViews extends Component {
                 <React.Fragment>
                     <Route exact path="/" render={props => { return <Home /> }} />
                     <Route exact path="/ecommerce" render={props => { return <Ecommerce /> }} />
+                    
+                    <Route exact path="/ecommerce/products" render={(props) => { return <ProductsList {...props} products={this.state.products} /> }} />
+                    <Route exact path="/ecommerce/products/new" render={(props) => { return <ProductsForm {...props} customers={this.state.customers} productTypes={this.state.productTypes} addProduct={this.addProduct} /> }} />
+                    <Route path="/ecommerce/products/edit/:productsId(\d+)" render={(props) => { return <ProductsEdit {...props} products={this.state.products} customers={this.state.customers} productTypes={this.state.productTypes} editProduct={this.editProduct} /> }} />
 
                     <Route exact path="/ecommerce/customers" render={(props) => { return <CustomersList {...props} customers={this.state.customers} /> }} />
                     <Route exact path="/ecommerce/customers/new" render={(props) => { return <CustomersForm {...props} addCustomer={this.addCustomer} /> }} />
