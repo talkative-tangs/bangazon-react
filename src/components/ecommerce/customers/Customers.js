@@ -1,4 +1,6 @@
 import React, { Component } from "react"
+import { Button } from 'semantic-ui-react'
+import { Link } from "react-router-dom";
 
 export default class Customers extends Component {
     render() {
@@ -8,6 +10,8 @@ export default class Customers extends Component {
                     <div className="card-body">
                         <div className="card-title">
                             <h2>{this.props.customer.first_name} {this.props.customer.last_name}</h2>
+                            {console.log("customer id", this.props.customer.id)}
+                            <Button as={Link} size="tiny" color="orange" className="card-link" to={`/ecommerce/customers/edit/${this.props.customer.id}`}>Edit</Button>
                         </div>
                     </div>
                 </div>

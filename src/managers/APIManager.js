@@ -22,9 +22,10 @@ class APIManager {
         .then(e => e.json())
   }
 
-  patch(payload, url) {
+  put(payload, url) {
+    console.log("payload", JSON.stringify(payload))
     return fetch(`${url}`, {
-      method: "PATCH",
+      method: "PUT",
       headers: {
         "Content-Type": "application/json"
       },
