@@ -11,6 +11,8 @@ export default class Home extends Component {
           <br/>
           <a href='http://localhost:3000/ecommerce/customers'>Customers List</a>
           <br/>
+          <a href='http://localhost:3000/ecommerce/paymentTypes'>Payment Types List</a>
+          <br/>
           <Button as={Link} size="tiny" color="yellow" className="card-link" to={`/`}>Back</Button>
         </div>
     );
