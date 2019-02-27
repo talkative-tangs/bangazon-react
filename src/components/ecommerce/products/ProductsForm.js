@@ -90,7 +90,7 @@ export default class ProductsForm extends Component {
                             name="product_type"
                             id="product_type"
                             onChange={this.handleFieldChange}>
-                            <option value="">Select Product's Seller</option>
+                            <option value="">Select Product's Type</option>
                             {this.props.productTypes.map(b => (
                                 <option key={b.id} id={b.id} value={b.url}>
                                     {b.name}
