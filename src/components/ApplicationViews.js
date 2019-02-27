@@ -2,20 +2,12 @@ import React, { Component } from 'react';
 import { Route } from "react-router-dom";
 
 import CustomersManager from "../managers/CustomersManager";
-import PaymentTypesManager from "../managers/PaymentTypesManager";
-import Home from "../components/home/Home";
-import Ecommerce from "../components/ecommerce/Ecommerce"
-import CustomersList from "../components/ecommerce/customers/CustomersList"
-import CustomersForm from "../components/ecommerce/customers/CustomersForm"
-import CustomersEdit from "../components/ecommerce/customers/CustomersEdit"
-import PaymentTypesList from "./ecommerce/paymentTypes/PaymentTypesList"
-import PaymentTypesForm from "./ecommerce/paymentTypes/PaymentTypesForm"
-import PaymentTypesEdit from "./ecommerce/paymentTypes/PaymentTypesEdit"
 import ProductTypesManager from "../managers/ProductTypesManager";
 import ProductsManager from "../managers/ProductsManager";
+import PaymentTypesManager from "../managers/PaymentTypesManager";
 
 import Home from "../components/home/Home";
-import Ecommerce from "../components/ecommerce/Ecommerce";
+import Ecommerce from "../components/ecommerce/Ecommerce"
 
 import CustomersList from "../components/ecommerce/customers/CustomersList";
 import CustomersForm from "../components/ecommerce/customers/CustomersForm";
@@ -28,6 +20,10 @@ import ProductTypesEdit from "../components/ecommerce/productTypes/ProductTypesE
 import ProductsList from "../components/ecommerce/products/ProductsList"
 import ProductsForm from "../components/ecommerce/products/ProductsForm"
 import ProductsEdit from "../components/ecommerce/products/ProductsEdit"
+
+import PaymentTypesList from "./ecommerce/paymentTypes/PaymentTypesList"
+import PaymentTypesForm from "./ecommerce/paymentTypes/PaymentTypesForm"
+import PaymentTypesEdit from "./ecommerce/paymentTypes/PaymentTypesEdit"
 
 export default class ApplicationViews extends Component {
 
