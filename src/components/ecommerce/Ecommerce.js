@@ -5,7 +5,7 @@ import { readdirSync } from "fs";
 
 export default class Home extends Component {
   render() {
-    
+
     return (
       <React.Fragment>
         <div>
@@ -21,7 +21,7 @@ export default class Home extends Component {
         </div>
         <div>
           <br/>
-          <a href='http://localhost:3000/ecommerce/product_type'>Product Types</a>
+          <a href='http://localhost:3000/ecommerce/productTypes'>Product Types</a>
           <br/>
         </div>
         <div>
