@@ -7,38 +7,21 @@ export default class Home extends Component {
   render() {
 
     return (
-      <React.Fragment>
-        <div>
-          <h1>Bangazon</h1>
-          <br/>
-          <a href='http://localhost:3000/ecommerce/customers'>Customers</a>
-          <br/>
-        </div>
-        <div>
-          <br/>
-          <a href='http://localhost:3000/ecommerce/products'>Products</a>
-          <br/>
-        </div>
-        <div>
-          <br/>
-          <a href='http://localhost:3000/ecommerce/productTypes'>Product Types</a>
-          <br/>
-        </div>
-        <div>
-          <br/>
-          <a href='http://localhost:3000/ecommerce/orders'>Orders</a>
-          <br/>
-        </div>
-        <div>
-          <br/>
-          <a href='http://localhost:3000/ecommerce/payment_type'>Payment Types</a>
-          <br/>
-        </div>
-        <div>
-          <br/>
-          <Button as={Link} size="tiny" color="yellow" className="card-link" to={`/`}>Back</Button>
-        </div>
-      </React.Fragment>
+      <div>
+        <h1>Landing Page</h1>
+        <br />
+        <a href='http://localhost:3000/ecommerce/customers'>Customers List</a>
+        <br/>
+        <a href='http://localhost:3000/ecommerce/productTypes'>ProductTypes List</a>
+        <br />
+        <a href='http://localhost:3000/ecommerce/products'>Products List</a>
+        <br />
+        <a href='http://localhost:3000/ecommerce/paymentTypes'>Payment Types List</a>
+        <br/>
+        <a href='http://localhost:3000/ecommerce/orders'>Orders</a>
+        <br/>
+        <Button as={Link} size="tiny" color="yellow" className="card-link" to={`/`}>Back</Button>
+      </div>
     );
   }
 }
