@@ -7,8 +7,14 @@ class CustomersManager extends APIManager {
   getAll() {
     return this.all()
   }
+  addAndList(newCustomer) {
+    return this.post(newCustomer).then(() => this.all())
+  }
   removeAndList(id) {
     return this.delete(id).then(() => this.all())
+  }
+  putAndListCustomers(payload, url) {
+    return this.put(payload, url).then(() => this.all())
   }
 }
 
