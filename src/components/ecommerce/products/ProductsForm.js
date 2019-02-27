@@ -1,6 +1,6 @@
 import React, { Component } from "react"
 import { Link } from "react-router-dom";
-import { Button, Form, Dropdown } from "semantic-ui-react";
+import { Button, Form } from "semantic-ui-react";
 
 export default class ProductsForm extends Component {
     // Set initial state
@@ -26,11 +26,11 @@ export default class ProductsForm extends Component {
             customer: this.state.customer,
             name: this.state.name,
             description: this.state.description,
-            price: this.state.price,
-            quantity: this.state.quantity,
+            price: parseInt(this.state.price),
+            quantity: parseInt(this.state.quantity),
             product_type: this.state.product_type
-
         }
+        console.log("payload", products)
         this.props.addProduct(products).then(() => this.props.history.push("/ecommerce/products"))
     }
 
@@ -39,15 +39,15 @@ export default class ProductsForm extends Component {
             <React.Fragment>
                 <Form className="ProductsForm">
                     <Form.Field className="form-group">
-                        <label htmlFor="username">Seller's Username</label>
+                        <label htmlFor="customer">Seller's Username</label>
                         <select
                             defaultValue=""
-                            name="username"
-                            id="username"
-                            onChange={this.props.handleFieldChange}>
+                            name="customer"
+                            id="customer"
+                            onChange={this.handleFieldChange}>
                             <option value="">Select Product's Seller</option>
                             {this.props.customers.map(b => (
-                                <option key={b.id} id={b.id}>
+                                <option key={b.id} id={b.id} value={b.url}>
                                     {b.username}
                                 </option>
                             ))}
@@ -62,7 +62,7 @@ export default class ProductsForm extends Component {
                     </Form.Field>
                     <Form.Field className="form-group">
                         <label htmlFor="description">Description</label>
-                        <input type="textarea" required
+                        <input type="text" required
                             className="form-control"
                             onChange={this.handleFieldChange}
                             id="description"
@@ -85,11 +85,18 @@ export default class ProductsForm extends Component {
                     </Form.Field>
                     <Form.Field className="form-group">
                         <label htmlFor="product_type">Product Type</label>
-                        <input type="tel" required
-                            className="form-control"
-                            onChange={this.handleFieldChange}
+                        <select
+                            defaultValue=""
+                            name="product_type"
                             id="product_type"
-                            placeholder="Select Product's Type Here..." />
+                            onChange={this.handleFieldChange}>
+                            <option value="">Select Product's Seller</option>
+                            {this.props.productTypes.map(b => (
+                                <option key={b.id} id={b.id} value={b.url}>
+                                    {b.name}
+                                </option>
+                            ))}
+                        </select>
                     </Form.Field>
                     <Button type="submit" onClick={this.constructNewProdcut} className="btn btn-primary" color="green">Submit</Button>
                     <Button as={Link} size="tiny" color="yellow" className="card-link" to={`/ecommerce/products/`}>Back</Button>

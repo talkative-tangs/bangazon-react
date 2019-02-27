@@ -1,9 +1,5 @@
 import React, { Component } from "react"
-<<<<<<< HEAD
-import { Button, Card } from 'semantic-ui-react'
-=======
 import { Button , Card} from 'semantic-ui-react'
->>>>>>> master
 import { Link } from "react-router-dom";
 
 export default class Customers extends Component {

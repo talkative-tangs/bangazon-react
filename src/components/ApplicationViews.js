@@ -84,13 +84,13 @@ export default class ApplicationViews extends Component {
             );
 
     editProduct = (products, url) =>
-        ProductsManager.putAndListCustomers(products, url)
+        ProductsManager.putAndListProducts(products, url)
             .then(() => ProductsManager.getAll()).then(products =>
                 this.setState({
                     products: products
                 })
             );
-            
+
     // Product Types
     addProductType = productTypes =>
         ProductTypesManager.addAndList(productTypes)
@@ -115,13 +115,9 @@ export default class ApplicationViews extends Component {
                     <Route exact path="/" render={props => { return <Home /> }} />
                     <Route exact path="/ecommerce" render={props => { return <Ecommerce /> }} />
                     
-                    <Route exact path="/ecommerce/customers" render={(props) => { return <CustomersList {...props} customers={this.state.customers} /> }} />
-                    <Route exact path="/ecommerce/customers/new" render={(props) => { return <CustomersForm {...props} addCustomer={this.addCustomer} /> }} />
-                    <Route path="/ecommerce/customers/edit/:customersId(\d+)" render={(props) => { return <CustomersEdit {...props} customers={this.state.customers} editCustomer={this.editCustomer} /> }} />
-                    
                     <Route exact path="/ecommerce/products" render={(props) => { return <ProductsList {...props} products={this.state.products} /> }} />
-                    <Route exact path="/ecommerce/products/new" render={(props) => { return <ProductsForm {...props} customers={this.state.customers} addProduct={this.addProduct} /> }} />
-                    <Route path="/ecommerce/products/edit/:productsId(\d+)" render={(props) => { return <ProductsEdit {...props} products={this.state.products} editProduct={this.editProduct} /> }} />
+                    <Route exact path="/ecommerce/products/new" render={(props) => { return <ProductsForm {...props} customers={this.state.customers} productTypes={this.state.productTypes} addProduct={this.addProduct} /> }} />
+                    <Route path="/ecommerce/products/edit/:productsId(\d+)" render={(props) => { return <ProductsEdit {...props} products={this.state.products} customers={this.state.customers} productTypes={this.state.productTypes} editProduct={this.editProduct} /> }} />
 
                     <Route exact path="/ecommerce/customers" render={(props) => { return <CustomersList {...props} customers={this.state.customers} /> }} />
                     <Route exact path="/ecommerce/customers/new" render={(props) => { return <CustomersForm {...props} addCustomer={this.addCustomer} /> }} />

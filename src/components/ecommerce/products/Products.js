@@ -10,11 +10,9 @@ export default class Products extends Component {
                     <div className="card-body">
                         <div className="card-title">
                             <h2>Name: {this.props.product.name}</h2>
-                            <p>Product Type: {this.props.product.product_type}</p>
                             <p>Price: {this.props.product.price}</p>
                             <p>Quantity: {this.props.product.quantity}</p>
                             <p>Desc: {this.props.product.description}</p>
-                            <p>Seller: {this.props.product.customer}</p>
                             {console.log("product id", this.props.product.id)}
                             <Button as={Link} size="tiny" color="orange" className="card-link" to={`/ecommerce/products/edit/${this.props.product.id}`}>Edit</Button>
                         </div>

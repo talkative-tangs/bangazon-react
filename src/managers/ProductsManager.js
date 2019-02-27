@@ -13,7 +13,7 @@ class ProductsManager extends APIManager {
   removeAndList(id) {
     return this.delete(id).then(() => this.all())
   }
-  putAndListCustomers(payload, url) {
+  putAndListProducts(payload, url) {
     return this.put(payload, url).then(() => this.all())
   }
 }
