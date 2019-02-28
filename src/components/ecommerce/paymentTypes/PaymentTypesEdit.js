@@ -21,28 +21,25 @@ export default class PaymentTypesEdit extends Component {
         let newState = {}
         let paymentTypes = this.props.paymentTypes.find(paymentTypes => paymentTypes.id === parseInt(this.props.match.params.paymentTypesId))
         console.log(paymentTypes)
-        newState.first_name = paymentTypes.first_name
-        newState.last_name = paymentTypes.last_name
-        newState.username = paymentTypes.username
-        newState.email = paymentTypes.email
-        newState.address = paymentTypes.address
-        newState.phone_number = paymentTypes.phone_number
+        newState.payment_name = paymentTypes.payment_name
+        newState.account_number = paymentTypes.account_number
+        newState.customer = paymentTypes.customer
         newState.id = paymentTypes.id
 
         this.setState(newState)
     }
   
-    editExistingCustomer = e => {
+    editExistingPaymentType = e => {
         e.preventDefault()
         const paymentTypes = {
             payment_name: this.state.payment_name,
-            account_number: this.state.account_number,
+            account_number: parseInt(this.state.account_number),
             customer: this.state.customer,
             id: this.state.id
         }
         let paymentTypesURL = "http://localhost:8000/api/v1/payment_type/"
         console.log(`${paymentTypesURL}${this.state.id}`)
-        return this.props.editCustomer(paymentTypes, `${paymentTypesURL}${this.state.id}/`)
+        return this.props.editPaymentType(paymentTypes, `${paymentTypesURL}${this.state.id}/`)
             .then(() => this.props.history.push("/ecommerce/paymentTypes/"))
     }
 
@@ -54,14 +51,14 @@ export default class PaymentTypesEdit extends Component {
                         <label htmlFor="paymentTypeName">Change Payment Name</label>
                         <input type="text" required className="form-control" onChange={this.handleFieldChange} id="payment_name" value={this.state.payment_name} />
                     </div>
-                    <div className="form-group">
+                    {/* <div className="form-group">
                         <label htmlFor="paymentTypeAccountNumber">Change Account Number</label>
-                        <input type="text" required className="form-control" onChange={this.handleFieldChange} id="last_name" value={this.state.last_name} />
-                    </div>
-                    <div className="form-group">
+                        <input type="number" required className="form-control" onChange={this.handleFieldChange} id="account_number" value={this.state.account_number} />
+                    </div> */}
+                    {/* <div className="form-group">
                         <label htmlFor="paymentTypeCustomer">Change Customer</label>
                         <input type="text" required className="form-control" onChange={this.handleFieldChange} id="customer" value={this.state.customer} />
-                    </div>
+                    </div> */}
                     
                     
                     <Button type="submit" size="tiny" color="green" className="btn btn-primary" onClick={this.editExistingPaymentType}>Submit Edited Payment Type</Button>
