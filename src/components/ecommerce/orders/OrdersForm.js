@@ -60,7 +60,7 @@ export default class OrdersForm extends Component {
               <option value="">Select a Payment Type</option>
               {this.props.paymentTypes.map(payment => (
                 <option key={payment.id} id={payment.url}>
-                  {payment.account_number}
+                  {payment.payment_name}
                 </option>
               ))}
             </select>
