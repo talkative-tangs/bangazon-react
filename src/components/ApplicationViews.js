@@ -5,13 +5,14 @@ import CustomersManager from "../managers/CustomersManager";
 import ProductTypesManager from "../managers/ProductTypesManager";
 import ProductsManager from "../managers/ProductsManager";
 import PaymentTypesManager from "../managers/PaymentTypesManager";
+import OrdersManager from "../managers/OrdersManager";
 
 import Home from "../components/home/Home";
 import Ecommerce from "../components/ecommerce/Ecommerce"
 
-import CustomersList from "../components/ecommerce/customers/CustomersList";
-import CustomersForm from "../components/ecommerce/customers/CustomersForm";
-import CustomersEdit from "../components/ecommerce/customers/CustomersEdit";
+import CustomersList from "../components/ecommerce/customers/CustomersList"
+import CustomersForm from "../components/ecommerce/customers/CustomersForm"
+import CustomersEdit from "../components/ecommerce/customers/CustomersEdit"
 
 import ProductTypesList from "../components/ecommerce/productTypes/ProductTypesList";
 import ProductTypesForm from "../components/ecommerce/productTypes/ProductTypesForm";
@@ -25,13 +26,18 @@ import PaymentTypesList from "./ecommerce/paymentTypes/PaymentTypesList"
 import PaymentTypesForm from "./ecommerce/paymentTypes/PaymentTypesForm"
 import PaymentTypesEdit from "./ecommerce/paymentTypes/PaymentTypesEdit"
 
+import OrdersList from "../components/ecommerce/orders/OrdersList"
+import OrdersForm from "../components/ecommerce/orders/OrdersForm"
+import OrdersEdit from "../components/ecommerce/orders/OrdersEdit"
+
 export default class ApplicationViews extends Component {
 
     state = {
         customers: [],
-        paymentTypes: [],
         products: [],
         productTypes: [],
+        paymentTypes: [],
+        orders: [],
         initialize: false
     }
 
@@ -40,6 +46,12 @@ export default class ApplicationViews extends Component {
             this.setState({
                 customers: allCustomers
             });
+        });
+        let ordersLoading = OrdersManager.getAll().then(allOrders => {
+          // console.log("all orders", allOrders)
+          this.setState({
+              orders: allOrders
+          });
         });
 
         
@@ -63,7 +75,7 @@ export default class ApplicationViews extends Component {
             });
           });
 
-        Promise.all([customersLoading, productTypesLoading, productsLoading, paymentTypeLoading]).then(() => {
+        Promise.all([customersLoading, productTypesLoading, productsLoading, paymentTypeLoading, ordersLoading]).then(() => {
             this.setState(
                 {
                     initialized: true
@@ -89,7 +101,7 @@ export default class ApplicationViews extends Component {
                     customers: customers
                 })
             );
-
+                    
     addPaymentType = paymentTypes =>
     PaymentTypesManager.addAndList(paymentTypes)
         .then(() => PaymentTypesManager.getAll()).then(paymentTypes =>
@@ -139,6 +151,23 @@ export default class ApplicationViews extends Component {
                 })
             );
 
+    // Orders
+    addOrder = orders =>
+        OrdersManager.addAndList(orders)
+            .then(() => OrdersManager.getAll()).then(orders =>
+                this.setState({
+                    orders: orders
+                })
+            );
+
+    editOrder = (orders, url) =>
+        OrdersManager.putAndListOrders(orders, url)
+            .then(() => OrdersManager.getAll()).then(orders =>
+                this.setState({
+                    orders: orders
+                })
+            );
+
     render() {
         if (this.state.initialized) {
             return (
@@ -153,6 +182,7 @@ export default class ApplicationViews extends Component {
                     <Route exact path="/ecommerce/customers" render={(props) => { return <CustomersList {...props} customers={this.state.customers} /> }} />
                     <Route exact path="/ecommerce/customers/new" render={(props) => { return <CustomersForm {...props} addCustomer={this.addCustomer} /> }} />
                     <Route path="/ecommerce/customers/edit/:customersId(\d+)" render={(props) => { return <CustomersEdit {...props} customers={this.state.customers} editCustomer={this.editCustomer} /> }} />
+
                     <Route exact path="/ecommerce/paymentTypes" render={(props) => { return <PaymentTypesList {...props} paymentTypes={this.state.paymentTypes} /> }} />
                     <Route exact path="/ecommerce/paymentTypes/new" render={(props) => { return <PaymentTypesForm {...props} addPaymentType={this.addPaymentType} customers={this.state.customers} /> }} />
                     <Route path="/ecommerce/paymentTypes/edit/:paymentTypesId(\d+)" render={(props) => { return <PaymentTypesEdit {...props} paymentTypes={this.state.paymentTypes} customers={this.state.customers}editPaymentType={this.editPaymentType} /> }} />
@@ -160,6 +190,10 @@ export default class ApplicationViews extends Component {
                     <Route exact path="/ecommerce/productTypes" render={(props) => { return <ProductTypesList {...props} productTypes={this.state.productTypes} /> }} />
                     <Route exact path="/ecommerce/productTypes/new" render={(props) => { return <ProductTypesForm {...props} addProductType={this.addProductType} /> }} />
                     <Route path="/ecommerce/productTypes/edit/:productTypesId(\d+)" render={(props) => { return <ProductTypesEdit {...props} productTypes={this.state.productTypes} editProductType={this.editProductType} /> }} />
+
+                    <Route exact path="/ecommerce/orders" render={(props) => { return <OrdersList {...props} orders={this.state.orders} customers={this.state.customers} paymentTypes={this.state.paymentTypes} products={this.state.products} /> }} />
+                    <Route exact path="/ecommerce/orders/new" render={(props) => { return <OrdersForm {...props} addOrder={this.addOrder} customers={this.state.customers} paymentTypes={this.state.paymentTypes} products={this.state.products} /> }} />
+                    <Route path="/ecommerce/orders/edit/:ordersId(\d+)" render={(props) => { return <OrdersEdit {...props} orders={this.state.orders} editOrder={this.editOrder} customers={this.state.customers} paymentTypes={this.state.paymentTypes} products={this.state.products} /> }} />
                 </React.Fragment>
             );
         } else {
