@@ -51,16 +51,6 @@ export default class PaymentTypesEdit extends Component {
                         <label htmlFor="paymentTypeName">Change Payment Name</label>
                         <input type="text" required className="form-control" onChange={this.handleFieldChange} id="payment_name" value={this.state.payment_name} />
                     </div>
-                    {/* <div className="form-group">
-                        <label htmlFor="paymentTypeAccountNumber">Change Account Number</label>
-                        <input type="number" required className="form-control" onChange={this.handleFieldChange} id="account_number" value={this.state.account_number} />
-                    </div> */}
-                    {/* <div className="form-group">
-                        <label htmlFor="paymentTypeCustomer">Change Customer</label>
-                        <input type="text" required className="form-control" onChange={this.handleFieldChange} id="customer" value={this.state.customer} />
-                    </div> */}
-                    
-                    
                     <Button type="submit" size="tiny" color="green" className="btn btn-primary" onClick={this.editExistingPaymentType}>Submit Edited Payment Type</Button>
                     <Button as={Link} size="tiny" color="yellow" className="card-link" to={`/ecommerce/paymentTypes/`}>Back</Button>
                 </form>
