@@ -14,13 +14,13 @@ export default class Orders extends Component {
               {console.log(this.props.customers)}
               {console.log(this.props.products)}
               {console.log(this.props.paymentTypes)}
-              {console.log(this.props.customers.id)}
-              
+              {console.log("ORDER - CUSTOMER OBJECT:", this.props.customer[0].first_name)}
+
               <Card.Description>
               <ul style={{listStyleType: "none"}}>
-                <li>Customer: {this.props.customers.username}</li>
-                <li>Products: {this.props.products.name}</li>
-                <li>Payment: {this.props.paymentTypes.payment_name}</li>
+                <li>Customer: {this.props.customer[0].username}</li>
+                <li>Products: {this.props.order.product}</li>
+                <li>Payment: {this.props.payment[0].payment_name}</li>
               </ul>
               </Card.Description>
 
