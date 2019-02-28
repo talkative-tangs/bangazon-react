@@ -3,6 +3,28 @@ import { Button, Card } from "semantic-ui-react";
 import { Link } from "react-router-dom";
 
 export default class Orders extends Component {
+
+  pay = () => {
+    if (this.props.payment[0] !== undefined) {
+      return this.props.payment[0].payment_name
+    }
+  }
+
+  productmap = () => {
+    let productArray = ""
+    console.log('blah', this.props.products)
+    if (this.props.products.length > 0) {
+      console.log('im here')
+      productArray = this.props.products.map(product => {     
+        return <li key={product.id}>{product[0].name}</li> 
+    })
+    }
+    return productArray
+  }
+
+
+
+
   render() {
     return (
         <Card key={this.props.order.id} className="card">
@@ -10,17 +32,13 @@ export default class Orders extends Component {
             <div className="card-body">
               <div className="card-title">
               <Card.Header textAlign="center">Order #{this.props.order.id}</Card.Header>
-
-              {console.log(this.props.customers)}
-              {console.log(this.props.products)}
-              {console.log(this.props.paymentTypes)}
-              {console.log(this.props.customers.id)}
-              
+              <Card.Meta textAlign="center">{this.props.customer[0].username}</Card.Meta>
               <Card.Description>
               <ul style={{listStyleType: "none"}}>
-                <li>Customer: {this.props.customers.username}</li>
-                <li>Products: {this.props.products.name}</li>
-                <li>Payment: {this.props.paymentTypes.payment_name}</li>
+                <li>payment: {this.pay()}</li><br />
+                <li>products:
+                  <ul>{this.productmap()}</ul>
+                </li>
               </ul>
               </Card.Description>
 

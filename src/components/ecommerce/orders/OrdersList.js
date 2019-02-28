@@ -12,7 +12,11 @@ export default class OrdersList extends Component {
           <h1>All Orders:</h1>
           {
             this.props.orders.map(order => {
-              return <Orders key={order.id} order={order} {...this.props} />
+              let customer = this.props.customers.filter(customer => customer.id === order.customer_id)
+              let payment = this.props.paymentTypes.filter(payment => payment.url === order.payment_type)
+              let products = order.product.map(op => {
+              return this.props.products.filter(product => product.url === op)})
+              return <Orders key={order.id} order={order} customer={customer} payment={payment} products={products}/>
             })
           }
         </section>
