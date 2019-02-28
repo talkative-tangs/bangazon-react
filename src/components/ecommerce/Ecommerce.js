@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { Button } from 'semantic-ui-react'
-import { readdirSync } from "fs";
+// import { readdirSync } from "fs";
 
 export default class Home extends Component {
   render() {

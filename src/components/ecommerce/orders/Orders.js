@@ -1,18 +1,26 @@
 import React, { Component } from "react";
-import { Button } from "semantic-ui-react";
+import { Button, Card } from "semantic-ui-react";
 import { Link } from "react-router-dom";
 
 export default class Orders extends Component {
   render() {
     return (
-      <section className="orders-details">
-        <div key={this.props.order.id} className="card">
-          <div className="card-body">
-            <div className="card-title">
-              <h2>
-                Order number {this.props.order.id}
-              </h2>
-              {console.log("order id", this.props.order.id)}
+        <Card key={this.props.order.id} className="card">
+          <Card.Content>
+            <div className="card-body">
+              <div className="card-title">
+              <Card.Header>Order #{this.props.order.id}</Card.Header>
+              {console.log(this.props.customers)}
+              {console.log(this.props.products)}
+              {console.log(this.props.paymentTypes)}
+              {console.log(this.props.customers.id)}
+
+              <ul style={{listStyleType: "none"}}>
+                <li>Customer: {this.props.customers.username}</li>
+                <li>Products: {this.props.products.name}</li>
+                <li>Payment: {this.props.paymentTypes.payment_name}</li>
+              </ul>
+
               <Button
                 as={Link}
                 size="tiny"
@@ -22,10 +30,10 @@ export default class Orders extends Component {
               >
                 Edit
               </Button>
+              </div>
             </div>
-          </div>
-        </div>
-      </section>
+          </Card.Content>
+        </Card>
     );
   }
 }

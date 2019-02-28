@@ -9,7 +9,7 @@ export default class OrdersList extends Component {
     return (
       <React.Fragment>
         <section className="orders-list">
-          <h1>List of Orders:</h1>
+          <h1>All Orders:</h1>
           {
             this.props.orders.map(order => {
               return <Orders key={order.id} order={order} {...this.props} />
