@@ -1,16 +1,13 @@
 import React, { Component } from 'react';
 import ApplicationViews from "./components/ApplicationViews"
-// import NavBar from "./components/nav/NavBar"
-import { Container } from 'semantic-ui-react'
+import NavBar from "./components/navbar/NavBar"
 
 export default class App extends Component {
   render() {
       return (
           <React.Fragment>
-              {/* <NavBar /> */}
-              <Container>
+              <NavBar />
                 <ApplicationViews />
-              </Container>
           </React.Fragment>
       )
   }
