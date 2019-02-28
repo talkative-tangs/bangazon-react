@@ -111,8 +111,7 @@ export default class ApplicationViews extends Component {
         );
     
     editPaymentType = (paymentTypes, url) =>
-        PaymentTypesManager
-        .putAndListPaymentTypes(paymentTypes, url)
+        PaymentTypesManager.putAndListPaymentTypes(paymentTypes, url)
             .then(() => PaymentTypesManager.getAll()).then(paymentTypes =>
                 this.setState({
                     paymentTypes: paymentTypes
@@ -186,8 +185,8 @@ export default class ApplicationViews extends Component {
 
                     <Route exact path="/ecommerce/paymentTypes" render={(props) => { return <PaymentTypesList {...props} paymentTypes={this.state.paymentTypes} /> }} />
                     <Route exact path="/ecommerce/paymentTypes/new" render={(props) => { return <PaymentTypesForm {...props} addPaymentType={this.addPaymentType} customers={this.state.customers} /> }} />
-                    <Route path="/ecommerce/paymentTypes/edit/:paymentTypesId(\d+)" render={(props) => { return <PaymentTypesEdit {...props} paymentTypes={this.state.paymentTypes} editPaymentType={this.editPaymentType} /> }} />
-                    
+                    <Route path="/ecommerce/paymentTypes/edit/:paymentTypesId(\d+)" render={(props) => { return <PaymentTypesEdit {...props} paymentTypes={this.state.paymentTypes} customers={this.state.customers}editPaymentType={this.editPaymentType} /> }} />
+
                     <Route exact path="/ecommerce/productTypes" render={(props) => { return <ProductTypesList {...props} productTypes={this.state.productTypes} /> }} />
                     <Route exact path="/ecommerce/productTypes/new" render={(props) => { return <ProductTypesForm {...props} addProductType={this.addProductType} /> }} />
                     <Route path="/ecommerce/productTypes/edit/:productTypesId(\d+)" render={(props) => { return <ProductTypesEdit {...props} productTypes={this.state.productTypes} editProductType={this.editProductType} /> }} />
