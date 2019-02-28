@@ -21,11 +21,11 @@ export default class OrdersList extends Component {
           }
         </section>
         <section className="ordersButton">
-          <Button color="green" type="button"
+          {/* <Button color="green" type="button"
             className="btn btn-success"
             onClick={() => { this.props.history.push("/ecommerce/orders/new") }}>
             New Order
-          </Button>
+          </Button> */}
           <Button as={Link} size="tiny" color="yellow" className="card-link" to={`/ecommerce/`}>Back</Button>
         </section>
       </React.Fragment>

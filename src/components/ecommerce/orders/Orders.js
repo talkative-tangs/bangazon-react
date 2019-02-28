@@ -42,7 +42,7 @@ export default class Orders extends Component {
               </ul>
               </Card.Description>
 
-              <Button
+              {/* <Button
                 as={Link}
                 size="tiny"
                 color="orange"
@@ -50,7 +50,7 @@ export default class Orders extends Component {
                 to={`/ecommerce/orders/edit/${this.props.order.id}`}
               >
                 Edit
-              </Button>
+              </Button> */}
               </div>
             </div>
           </Card.Content>

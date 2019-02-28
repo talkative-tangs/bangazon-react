@@ -59,7 +59,7 @@ export default class OrdersForm extends Component {
               >
               <option value="">Select a Payment Type</option>
               {this.props.paymentTypes.map(payment => (
-                <option key={payment.id} id={payment.url}>
+                <option key={payment.id} id={payment.id} value={payment.url}>
                   {payment.payment_name}
                 </option>
               ))}
@@ -68,7 +68,7 @@ export default class OrdersForm extends Component {
 
           <Form.Field>
               <label htmlFor="products">Products</label>
-              <select
+              <select multiple
                 defaultValue=""
                 name="products"
                 id="products"
@@ -76,7 +76,7 @@ export default class OrdersForm extends Component {
                 >
                 <option value="">Select</option>
                 {this.props.products.map(product => (
-                  <option key={product.id} id={product.url}>
+                  <option key={product.id} id={product.id} value={product.url}>
                     {product.name}
                   </option>
                 ))}
