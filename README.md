@@ -15,6 +15,8 @@ Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
 With this server running, and the API running through Django on `localhost:8000/api/v1`, you should now be able to use this applicaton.
 
+You can navigate through the E-Commerce pages(the admin side wasn't finished) and create new customers, product types, products, and payment types. You can also edit each instance of those. You can also view orders created.
+
 
 
 
